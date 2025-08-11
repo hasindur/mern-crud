@@ -6,6 +6,11 @@ export default function User() {
             <div className="bg-white/20 backdrop-blur-md rounded-xl shadow-lg p-10 max-w-sm w-full text-white">
                 <h2 className="text-3xl font-bold mb-6 text-center">User Login</h2>
                 <form className="space-y-4">
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="form-control bg-white/30 border-0 text-black placeholder-white focus:ring-2 focus:ring-pink-400  m-2"
+                    />
 
 
                 </form>
