@@ -26,7 +26,7 @@ export default function User() {
                                 <td className="py-3 px-4">{user.email}</td>
                                 <td className="py-3 px-4">{user.age}</td>
                                 <td className="py-3 px-4 text-center">
-                                    <Button variant="primary" className="m-1 rounded-pill px-4">Edit</Button>
+                                    <Link to="/update-user" className="btn btn-primary m-4 rounded-pill px-4">Update</Link>
                                     <Button variant="danger" className="m-1 rounded-pill px-4">Delete</Button>
                                 </td>
                             </tr>
