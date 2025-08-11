@@ -2,4 +2,9 @@
 
 
 
+.hover-opacity-100:hover {
+  opacity: 1 !important;
+}
+
+
 

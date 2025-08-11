@@ -1,18 +1,29 @@
+import React from 'react';
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import User from './assets/User';
+import CreateUser from './assets/CreateUser';
+import UpdateUser from './assets/UpdateUser';
+
+
 
 function App() {
+  const [user, setUser] = useState(0);
 
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center h-screen">
-        <h1 class=" flex justify-center items-center text-3xl m-4 font-bold bg-blue-500 text-white p-4 rounded-xl opacity-50 hover:opacity-100 transition duration-300">
-          Hello world!
-        </h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-t from-purple-900  to-blue-900 p-6">
 
-        <h1 class=" flex justify-center items-center  text-3xl font-bold bg-blue-900 text-white p-4 rounded-xl opacity-50 hover:opacity-100 transition duration-300">
-          Hello world!
-        </h1>
-      </div>
+        <BrowserRouter >
+          <Routes>
+            <Route path="/" element={<User />} />
+            <Route path="/create" element={<CreateUser />} />
+            <Route path="/update" element={<UpdateUser />} />
+          </Routes>
+        </BrowserRouter>
+
+      </div >
     </>
   )
 }
