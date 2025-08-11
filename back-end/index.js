@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const UserModel = require('./models/Users'); // Import the User model
 
 
 const app = express();
@@ -21,10 +22,17 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/mern-crud'
 
 // Connect to MongoDB database
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))   // Success message
-  .catch((err) => console.error('MongoDB connection error:', err));  // Error handling
+  .then(() => console.log('Connected to MongoDB....'))  
+  .catch((err) => console.error('MongoDB connection error :', err));  
 
-// Simple test route to check if server is running
+// Create a new user
+app.post('/users', async (req, res) => {
+  UserModel.create(req.body)
+    .then(users => res.json(users))
+    .catch((error) => res.json({ message: error }));   
+});
+
+// Get all users
 app.get('/', (req, res) => {
   res.send('Hello from Express server!');
 });
