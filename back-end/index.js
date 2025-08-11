@@ -20,19 +20,47 @@ mongoose.connect(MONGO_URI)
   .then(() => console.log('Connected to MongoDB....'))  
   .catch((err) => console.error('MongoDB connection error :', err));  
 
-// Create a new user
-app.post('/users', async (req, res) => {
-  UserModel.create(req.body)
-    .then(users => res.json(users))
-    .catch((error) => res.json({ message: error }));     
-});
 
-// Get all users
+
+// Get a user by ID
 app.get('/', (req, res) => { 
     UserModel.find({})
     .then(users => res.json(users))
     .catch(error => res.json({ message: error })); 
- // res.send('Hello from Express server!');
+
+});
+
+// Get a user by ID
+app.get('/user/:id ', (req, res) => { 
+    const id= req.params.id;
+    UserModel.findById({_id: id})
+    .then(users => res.json(users))
+    .catch(error => res.json({ message: error })); 
+
+});
+
+// Update a user
+app.put('/user/:id ', (req, res) => { 
+    const id= req.params.id;
+    UserModel.findByIdAndUpdate({_id: id},{name: req.body.name, email: req.body.email, age: req.body.age})
+    .then(users => res.json(users))
+    .catch(error => res.json({ message: error })); 
+
+});
+
+// Create a new user
+app.post('/createUsers', async (req, res) => {
+  UserModel.create(req.body)
+    .then(users => res.json(users))
+    .catch((error) => res.json({ message: error }));     
+});
+ 
+// Delete a user
+app.delete('/deleteUser/:id', async (req, res) => {
+  const id = req.params.id;
+  UserModel.findByIdAndDelete(id)
+    .then(() => res.json({ message: 'User deleted successfully' }))
+    .catch((error) => res.json({ message: error }));
 });
 
 // Start the Express server
