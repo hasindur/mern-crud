@@ -1,17 +1,12 @@
-// Load environment variables from .env file
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const UserModel = require('./models/Users'); // Import the User model
+const UserModel = require('./models/Users'); 
 
 
 const app = express();
-
-// Enable Cross-Origin Resource Sharing (CORS)
 app.use(cors());
-
-// Parse incoming JSON requests
 app.use(express.json());
 
 // Use PORT from environment or default to 5000
@@ -29,12 +24,15 @@ mongoose.connect(MONGO_URI)
 app.post('/users', async (req, res) => {
   UserModel.create(req.body)
     .then(users => res.json(users))
-    .catch((error) => res.json({ message: error }));   
+    .catch((error) => res.json({ message: error }));     
 });
 
 // Get all users
-app.get('/', (req, res) => {
-  res.send('Hello from Express server!');
+app.get('/', (req, res) => { 
+    UserModel.find({})
+    .then(users => res.json(users))
+    .catch(error => res.json({ message: error })); 
+ // res.send('Hello from Express server!');
 });
 
 // Start the Express server
