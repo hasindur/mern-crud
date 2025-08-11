@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function CreateUser() {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [age, setAge] = React.useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [age, setAge] = useState('');
     const navigate = useNavigate();
     const Submit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5000/users', { name: name, email: email, age: age })
+        axios.post('http://localhost:5000/createUsers', { name: name, email: email, age: age })
             .then(result => {
                 console.log(result)
                 navigate('/')
