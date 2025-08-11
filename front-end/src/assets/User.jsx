@@ -1,11 +1,20 @@
 import Button from 'react-bootstrap/Button';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CreateUser from './CreateUser';
+import axios from 'axios';
+
 
 export default function User() {
     // Placeholder for user data, replace with actual data fetching logic
-    const [users, setUsers] = React.useState([{ name: 'John ', email: 'd3Ht6@example.com', age: 30 }]);
+    const [users, setUsers] = React.useState([{ name: 'John ', email: 'abc@example.com', age: 30 }]);
+
+    useEffect(() => {
+        axios.get('http://localhost:5000')  // Assuming you fixed your backend to handle this route
+            .then(result => setUsers(result.data))
+            .catch(err => console.error(err));
+    }, []);
+
     return (
         <div className="min-h-screen bg-gradient-to-t from-purple-900 to-blue-900 flex justify-center items-center p-6">
             <div className="bg-white rounded-3xl shadow-lg overflow-hidden w-full max-w-4xl">
@@ -20,11 +29,11 @@ export default function User() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {users.map((users, index) => (
                             <tr key={index} className="hover:bg-purple-50 transition">
-                                <td className="py-3 px-4 font-semibold">{user.name}</td>
-                                <td className="py-3 px-4">{user.email}</td>
-                                <td className="py-3 px-4">{user.age}</td>
+                                <td className="py-3 px-4 font-semibold">{users.name}</td>
+                                <td className="py-3 px-4 ">{users.email}</td>
+                                <td className="py-3 px-4">{users.age}</td>
                                 <td className="py-3 px-4 text-center">
                                     <Link to="/update-user" className="btn btn-primary m-4 rounded-pill px-4">Update</Link>
                                     <Button variant="danger" className="m-1 rounded-pill px-4">Delete</Button>
