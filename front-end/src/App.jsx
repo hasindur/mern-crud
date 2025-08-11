@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter >
         <Routes>
           <Route path="/" element={<User />} />
-          <Route path="/create" element={<CreateUser />} />
+          <Route path="/create-user" element={<CreateUser />} />
           <Route path="/update" element={<UpdateUser />} />
         </Routes>
       </BrowserRouter>
